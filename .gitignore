@@ -365,3 +365,4 @@ Source/site/
 Source/*.zip
 
 /Source/Lib/Clients/TestingApp/result.json
+.idea/
