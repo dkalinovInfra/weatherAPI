@@ -9,7 +9,7 @@ namespace WebAPI.Data
         public string Image { get; set; }
         public int TemperatureF { get; set; }
         public string? Summary { get; set; }
-        public Address Address { get; set; }
+        public List<Address> Addresses { get; set; } = new ();
     }
 
     public class Address

@@ -36,8 +36,19 @@ namespace WebAPI.Controllers
             return forecast;
         }
         
-        [HttpGet]
-        [Route("GetString")]
+        [HttpGet("{id:int}/Addresses")]
+        public ActionResult<List<Address>> Addresses(int id)
+        {
+            var forecast = weatherService.Get(id);
+            if (forecast == null)
+            {
+                return NotFound();
+            }
+
+            return forecast.Addresses;
+        }
+
+        [HttpGet("GetString/{id}")]
         public ActionResult<WeatherForecast> GetString(string id)
         {
             var forecast = weatherService.Get(int.Parse(id));

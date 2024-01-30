@@ -100,15 +100,16 @@ namespace WebAPI.Services
             Rating = Random.Shared.Next(0, 6),
             Image = Icons[Random.Shared.Next(Icons.Length)],
             Summary = Summaries[Random.Shared.Next(Summaries.Length)],
-            Address = new Address()
-            {
-                Street = StreetNames[Random.Shared.Next(StreetNames.Length)],
-                City = new RegionAndCity()
+            Addresses = Enumerable.Range(1, Random.Shared.Next(2, 10)).Select( _ =>
+                new Address()
                 {
-                    Region = Regions[Random.Shared.Next(Regions.Length)],
-                    City = Cities[Random.Shared.Next(Cities.Length)]
-                }
-            }
+                    Street = StreetNames[Random.Shared.Next(StreetNames.Length)],
+                    City = new RegionAndCity()
+                    {
+                        Region = Regions[Random.Shared.Next(Regions.Length)],
+                        City = Cities[Random.Shared.Next(Cities.Length)]
+                    }
+                }).ToList()
         }).ToList();
 
         public void Delete(int id)
