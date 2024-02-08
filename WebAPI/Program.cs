@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using WebAPI.Services;
 
 namespace WebAPI
@@ -13,7 +14,12 @@ namespace WebAPI
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.OperationFilter<OperationFilters.ReApplyOptionalRouteParameterOperationFilter>();
+                
+                c.SwaggerDoc("v1", new OpenApiInfo() { Title = "Random Weather API", Version = "v1"});
+            });
             builder.Services.AddSingleton<IWeatherService, WeatherService>();
 
             var app = builder.Build();

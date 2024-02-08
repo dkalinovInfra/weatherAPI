@@ -36,6 +36,30 @@ namespace WebAPI.Controllers
             return forecast;
         }
         
+        [HttpGet("GetByOptionalId/{id?}")]
+        public ActionResult<WeatherForecast> GetOptional(int id = 1)
+        {
+            var forecast = weatherService.Get(id);
+            if (forecast == null)
+            {
+                return NotFound();
+            }
+
+            return forecast;
+        }
+        
+        [HttpGet("GetWithTwoParams/{id:int}/{text}")]
+        public ActionResult<WeatherForecast> GetTwoParams(int id, string text)
+        {
+            var forecast = weatherService.Get(id);
+            if (forecast == null)
+            {
+                return NotFound();
+            }
+
+            return forecast;
+        }
+        
         [HttpGet("{id:int}/Addresses")]
         public ActionResult<List<Address>> Addresses(int id)
         {
